@@ -17,7 +17,7 @@ export class TableTurnoComponent {
   constructor(private api: CartolaApiService) {}
   
   ngOnInit(): void {
-    // this.getDados();
+    this.getDados();
   }
   
   getDados() {
@@ -25,10 +25,14 @@ export class TableTurnoComponent {
       this.api.getData(time).subscribe(response => {
         const timeData = {
           nome: response?.time?.nome,
+          nome_pessoa: response?.time?.nome_cartola,
+          patrimonio: response?.patrimonio,
           pontos: response?.pontos,
-          total: response?.pontos_campeonato
+          total: response?.pontos_campeonato,
+          escudo: response?.time?.url_escudo_svg
         };
         this.times.push(timeData);
+        console.log(response);
       });
     });
   }
