@@ -17,7 +17,7 @@ export class TableTurnoComponent {
   constructor(private api: CartolaApiService) {}
   
   ngOnInit(): void {
-    this.getDados();
+    // this.getDados();
   }
   
   getDados() {
