@@ -18,7 +18,8 @@
                     <td style="display: flex; align-items: center;"> <img style="margin-right: 10px;" src={{product.escudo}} alt="escudo-time" width="20" height="20"> {{ i + 1+'º' }} {{ product.nome }}</td> 
                     <td>{{ product.cartoleiro }}</td>
                     <td>{{ product.pontos | number:'1.2-2' }}</td>
-                    <td>{{ product.total | number:'1.2-2' }}</td>
+                    <!-- <td>{{ product.total | number:'1.2-2' }}</td> -->
+                    <td>{{ 0.0 | number:'1.2-2' }}</td>
                     <td>{{ 'R$'+product.patrimonio }}</td>
                 </tr>
             </ng-template>
