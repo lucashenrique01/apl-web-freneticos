@@ -10,8 +10,8 @@ RUN npm run build -- --configuration=production
 
 # Etapa 2: servidor NGINX
 FROM nginx:alpine
+COPY --from=builder /app/dist/freneticos/browser /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist/freneticos /usr/share/nginx/html/
-
+COPY mime.types /etc/nginx/conf.d/mime.types
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
