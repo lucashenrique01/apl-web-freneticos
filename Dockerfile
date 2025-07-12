@@ -1,12 +1,9 @@
 # Etapa 1: construir a aplicação
-FROM node:20-alpine AS builder
+FROM node:21 as builder
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
 COPY . .
-RUN npm run build -- --configuration=production
+RUN npm install
+RUN npm run build
 
 # Etapa 2: servidor NGINX
 FROM nginx:alpine
