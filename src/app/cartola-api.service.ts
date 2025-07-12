@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CartolaApiService {
-  private apiUrl = 'https://api.cartola.globo.com/time/id/'
+  private apiUrl = 'http://apl-api-freneticos-production.up.railway.app/mensal/mes/julho/participantes'
   constructor(private http: HttpClient) { }
 
-  getData(value: string): Observable<any> {
-    return this.http.get<any>(this.apiUrl+value)
+  getData(): Observable<any> {
+    return this.http.get<any>(this.apiUrl)
   }
 
 }

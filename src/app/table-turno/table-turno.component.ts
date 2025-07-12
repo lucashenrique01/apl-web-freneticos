@@ -11,8 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './table-turno.component.css'
 })
 export class TableTurnoComponent {
-  times: any[] = [];
-  timesID = ['27682669','47586861','8722663','50140473','15697689','3743325','8003703','12259599','29700525','2253460','12001243','8082206','8518577','377421','90370','13976402','28162860','77297','50039243','49212869','61403','7894575','24765079','25297388','25676578','13941667','471943','428784','49502770','49141511','803851','17931529','27462196','257506','220863','49238520','26651951','3710334','25428714','14213413','49214864','794559']
+  times: any[] = [];  
 
   constructor(private api: CartolaApiService) {}
   
@@ -21,23 +20,21 @@ export class TableTurnoComponent {
   }
   
   getDados() {
-    this.timesID.forEach(time => {
-      this.api.getData(time).subscribe({
-        next:(response) => {
-          const timeData = {
-            nome: response?.time?.nome,
-            nome_pessoa: response?.time?.nome_cartola,
-            patrimonio: response?.patrimonio,
-            pontos: response?.pontos,
-            total: response?.pontos_campeonato,
-            escudo: response?.time?.url_escudo_svg
-          };
-          this.times.push(timeData);
-          console.log(response)
-        }
-      });
-    });
-  }
-  
+    this.api.getData().subscribe({
+      next:(response) => {
+        response.forEach((pt: { time: { nome: any; urlEscudoSvg: any; nomeCartola: any; }; patrimonio: any; pontos: any; pontosCampeonato: any; somatorioMensal: any; }) => {
+          var timeData = {
+          nome: pt?.time?.nome,
+          cartoleiro: pt?.time?.nomeCartola,
+          patrimonio: pt?.patrimonio,
+          pontos: pt?.pontos,
+          total: pt?.somatorioMensal,
+          escudo: pt?.time?.urlEscudoSvg
+        };
+        this.times.push(timeData);
+        });
+      }
+    });    
+  }  
 }
 
